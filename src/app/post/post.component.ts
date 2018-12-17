@@ -33,10 +33,19 @@ export class PostComponent {
       .subscribe((response) => {
         post['id'] = response.json().id;
         this.posts.unshift(post);
-        console.log(response.json());
+        // console.log(response.json());
       });
 
 
+  }
+
+  updatePost(post) {
+    this.http.patch(this.url + '/' + post.id, JSON.stringify({
+      isUpdate: true
+    }))
+      .subscribe((response) => {
+        console.log(response.json());
+      })
   }
 
 }

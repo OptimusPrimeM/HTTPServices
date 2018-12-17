@@ -17,12 +17,16 @@
         <tr> 
           <th scope="col">Title</th >
           <th scope="col">Body</th>
+          <th class="text-center">Remove</th>
         </tr>
       </thead> 
       <tbody>
         <tr *ngFor="let post of posts">
           <td>{{post.title}}</td>
           <td>{{post.body}}</td>
+          <td>
+            <span class="table-remove"><button type="button" class="btn btn-indigo  btn-sm my-0" (click)="updatePost(post)">Update</button></span>
+          </td>
         </tr>
       </tbody>
     </table>
