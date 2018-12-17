@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Http } from '@angular/http';
 
 @Component({
@@ -6,16 +6,22 @@ import { Http } from '@angular/http';
   templateUrl: './post.component.html',
   styleUrls: ['./post.component.css']
 })
-export class PostComponent {
+export class PostComponent implements OnInit {
+
+
 
   private _posts: any[];
   private _url = 'https://jsonplaceholder.typicode.com/posts';
 
   constructor(private http: Http) {
-    http.get(this.url)
-      .subscribe(response => {
-        this._posts = response.json();
-      });
+    
+  }
+
+  ngOnInit(): void {
+    this.http.get(this.url)
+    .subscribe(response => {
+      this._posts = response.json();
+    });
   }
 
   get posts() {
@@ -49,7 +55,7 @@ export class PostComponent {
   }
 
   deletePost(post) {
-    this.http.delete(this.url+'/'+post.id, post.id)
+    this.http.delete(this.url + '/' + post.id, post.id)
       .subscribe((response) => {
         let index = this.posts.indexOf(post);
         this.posts.splice(index, 1);
