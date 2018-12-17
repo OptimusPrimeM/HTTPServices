@@ -1,0 +1,30 @@
+<div class="container">
+
+   <div>
+      <div class="md-form mt-3">
+          <input type="text" id="title" class="form-control" (keyup.enter)="createPost(title)" #title>
+          <label for="title">Title</label>
+      </div>
+      <div class="md-form">
+          <textarea type="text" id="materialContactFormMessage" class="form-control md-textarea" rows="3"></textarea>
+          <label for="materialContactFormMessage">Body</label>
+      </div>
+   </div>
+
+  <div>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr> 
+          <th scope="col">Title</th >
+          <th scope="col">Body</th>
+        </tr>
+      </thead> 
+      <tbody>
+        <tr *ngFor="let post of posts">
+          <td>{{post.title}}</td>
+          <td>{{post.body}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
