@@ -13,45 +13,62 @@ export class PostComponent implements OnInit {
   private _posts: any[];
 
 
-  constructor(private service:PostService) { }
+  constructor(private service: PostService) { }
 
   ngOnInit(): void {
     this.service.getPost()
-    .subscribe(response => {
+      .subscribe(
+        response => {
           this._posts = response.json();
-    });
+        },
+
+        error => {
+          console.log(error);
+        });
   }
 
   get posts() {
-    return this._posts; 
+    return this._posts;
   }
 
   createPost(input: HTMLInputElement) {
 
     let post = { title: input.value };
     this.service.createPost(post)
-      .subscribe((response) => {
-        post['id'] = response.json().id;
-        this.posts.unshift(post);
-        // console.log(response .json());
-      });
+      .subscribe(
+        response => {
+          post['id'] = response.json().id;
+          this.posts.unshift(post);
+          // console.log(response .json());
+        },
+        error => {
+          console.log(error);
+        });
 
 
   }
 
   updatePost(post) {
     this.service.updatePost(post)
-      .subscribe((response) => {
-        console.log(response.json());
-      })
+      .subscribe(
+        response => {
+          console.log(response.json());
+        },
+        error => {
+          console.log(error);
+        });
   }
 
   deletePost(post) {
     this.service.deletePost(post.id)
-      .subscribe((response) => {
-        let index = this.posts.indexOf(post);
-        this.posts.splice(index, 1);
-      })
+      .subscribe(
+        response => {
+          let index = this.posts.indexOf(post);
+          this.posts.splice(index, 1);
+        },
+        error => {
+          console.log(error);
+        });
   }
 
 }
