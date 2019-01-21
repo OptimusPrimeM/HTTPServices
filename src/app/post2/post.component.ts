@@ -41,8 +41,12 @@ export class PostComponent implements OnInit {
           this.posts.unshift(post);
           // console.log(response .json());
         },
-        error => {
-          console.log(error);
+        (error: Response) => {
+
+          if (error.status === 400) {
+            // console.log(error);
+          }
+
         });
 
 
@@ -66,8 +70,15 @@ export class PostComponent implements OnInit {
           let index = this.posts.indexOf(post);
           this.posts.splice(index, 1);
         },
-        error => {
-          console.log(error);
+        (error: Response) => {
+
+          if (error.status === 404) {
+            console.log("This post has already been deleted");
+          } else {
+            alert("An unexpected error occured!");
+            console.log(error);
+          }
+
         });
   }
 
