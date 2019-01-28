@@ -5,7 +5,7 @@ import { HttpModule } from '@angular/http';
 import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { PostComponent } from './post/post.component';
+import { PostComponent } from './post2/post.component';
 
 @NgModule({
   declarations: [

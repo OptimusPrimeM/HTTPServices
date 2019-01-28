@@ -1,9 +1,13 @@
 import { BadInput } from './../common/bad-input';
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+// import { Observable } from 'rxjs/Observable';
+// import 'rxjs/add/operator/catch';
+import { Observable, Operator} from 'rxjs';
 import { AppError } from '../common/app-error';
 import { NotFoundError } from '../common/not-found-error';
+
+
 
 
 @Injectable()
@@ -35,6 +39,7 @@ export class PostService {
   }
 
   deletePost(id) {
+
     return this.http.delete(this.url + '/' + id, id)
       .catch((error: Response) => {
 
@@ -46,5 +51,5 @@ export class PostService {
       });
   }
 
-  get url() { return this._url }
+  get url()  { return this._url }
 }

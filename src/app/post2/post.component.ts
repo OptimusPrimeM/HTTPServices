@@ -12,10 +12,7 @@ import { NotFoundError } from '../common/not-found-error';
 })
 export class PostComponent implements OnInit {
 
-
-
   private _posts: any[];
-
 
   constructor(private service: PostService) { }
 
